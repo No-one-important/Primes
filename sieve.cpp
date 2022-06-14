@@ -55,16 +55,14 @@ public:
     }
 };
 
-class prime_sieve
-{
+class prime_sieve {
     private:
 
         long sieveSize = 0;
         BitArray Bits;
         static const std::map<const long long, const int> resultsDictionary;
 
-        bool validateResults()
-        {
+        bool validateResults() {
             auto result = resultsDictionary.find(sieveSize);
             if (resultsDictionary.end() == result)
                 return false;
@@ -73,25 +71,17 @@ class prime_sieve
 
     public:
 
-        prime_sieve(long n): Bits(n), sieveSize(n)
-        {
-        }
+        prime_sieve(long n): Bits(n), sieveSize(n) {}
 
-        ~prime_sieve()
-        {
-        }
+        ~prime_sieve() {}
 
-        void runSieve()
-        {
+        void runSieve() {
             int factor = 3;
             int q = (int) sqrt(sieveSize);
 
-            while (factor <= q)
-            {
-                for (int num = factor; num < sieveSize; num += 2)
-                {
-                    if (Bits.get(num))
-                    {
+            while (factor <= q) {
+                for (int num = factor; num < sieveSize; num += 2) {
+                    if (Bits.get(num)) {
                         factor = num;
                         break;
                     }
@@ -102,15 +92,12 @@ class prime_sieve
             }
         }
 
-        void printResults()
-        {
+        void printResults() {
             printf("2\n");
 
             int count = (sieveSize >= 2);                             // Starting count (2 is prime)
-            for (int num = 3; num <= sieveSize; num+=2)
-            {
-                if (Bits.get(num))
-                {
+            for (int num = 3; num <= sieveSize; num+=2) {
+                if (Bits.get(num)) {
                     printf("%d\n", num);
                     count++;
                 }
@@ -120,8 +107,7 @@ class prime_sieve
             printf("Count: %d", count);
         }
 
-        int countPrimes()
-        {
+        int countPrimes() {
             int count =  (sieveSize >= 2);;
             for (int i = 3; i < sieveSize; i+=2)
                 if (Bits.get(i))
